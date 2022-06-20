@@ -1,40 +1,24 @@
 import React from 'react'
 import UserItem from './UserItem';
+import { User } from '../models/user';
 import './UserList.css';
 
-interface IUser {
-  key: string;
-  id: string;
-  name: string;
-  image: string;
-  places: number;
+export interface UserListProps {
+  users: User[];
 }
 
-interface PropsType<T> {
-  items: T[];
-}
-
-function UserList<T extends IUser>(props: PropsType<T>){
-  if(props.items.length === 0){
-    return (
-      <div>No users created yet.</div>
-    );
-  } else {
+const UserList: React.FC<UserListProps> = ({users}) => {
     return (
       <ul className="users-list">
-        { props.items.map(user => {
+        { users.map((user: User, index: number) => {
             return <UserItem 
                       key={user.id} 
-                      id={user.id} 
-                      image={user.image} 
-                      name={user.name} 
-                      places={user.places}
+                      user={user}
                     />
           })
         }
       </ul>
     )
-  }
 };
 
 export default UserList
