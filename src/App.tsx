@@ -4,6 +4,7 @@ import axios from 'axios';
 import { formatUserName } from './utils';
 import Users from './user/pages/Users';
 import NewPlaces from './places/pages/NewPlace';
+import MainNavigation from './shared/components/Navigation/MainNavigation';
 
 interface IUser {
   id: string;
@@ -32,25 +33,15 @@ function App() {
 
   return (
     <Router>
-      <div className="App">
-        <div>Users:</div>
-        {users.length ? (
-          <ul data-testid="user-list">
-            {users.map(user => (
-              <li key={user.id} className="user" data-testid="user-item">
-                <span>{user.name}</span> (<span>{formatUserName(user.username)}</span>)
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <div>Loading users...</div>
-        )}
-      </div>
-      <Routes>
-        <Route path="/" element={<Users/>}/>
-        <Route path="/places/new" element={<NewPlaces/>}/>
-        <Route path="*" element={<Navigate to="/"/>}/>
-      </Routes>
+
+      <MainNavigation/>
+        <main>
+        <Routes>
+          <Route path="/" element={<Users/>}/>
+          <Route path="/places/new" element={<NewPlaces/>}/>
+          <Route path="*" element={<Navigate to="/"/>}/>
+        </Routes>
+        </main>
     </Router>
   );
 }
