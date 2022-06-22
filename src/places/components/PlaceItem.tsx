@@ -19,7 +19,7 @@ const PlaceItem: React.FC<PlaceItemProps> = ({place}) => {
           <h3>{place.address}</h3>
           <p>{place.description}</p>
         </div>
-        <div className="place-items__actions">
+        <div className="place-item__actions">
           <button>VIEW ON MAP</button>
           <button>EDIT</button>
           <button>DELETE</button>
